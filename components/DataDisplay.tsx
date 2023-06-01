@@ -21,9 +21,11 @@ const DataDisplay = ({
   loading?: boolean;
 }) => {
   return (
-    <div className="bg-sky-950 py-20 text-white px-5">
+    <div className="text-white px-5">
       <p className="font-bold text-3xl pb-5 text-center">Display Large Data</p>
-      <p className="text-right">Data Total: {data?.count}</p>
+      <p className="text-right">
+        Data Total: {loading ? "Loading..." : data?.count}
+      </p>
 
       <List
         className="px-3 sm:w-1/2 mx-auto break-words"

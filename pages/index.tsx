@@ -1,13 +1,19 @@
+import Button from "antd/lib/button";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import DataDisplay from "../components/DataDisplay";
 import { APIData } from "../types";
+import LinkButton from "../components/LinkButton";
+import CSSWrapper from "../components/CSSWrapper";
 
 export default function Home({ data }: { data: APIData }) {
   return (
     <>
       <Header />
-      <DataDisplay data={data} />
+      <CSSWrapper>
+        <LinkButton path={"/client-fetch"} label="Try API fetch on client" />
+        <DataDisplay data={data} />
+      </CSSWrapper>
       <Footer />
     </>
   );
