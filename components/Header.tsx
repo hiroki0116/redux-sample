@@ -11,7 +11,6 @@ const Header = () => {
   const [current, setCurrent] = useState("");
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
   const items: MenuProps["items"] = [
@@ -39,20 +38,6 @@ const Header = () => {
             },
           ],
         },
-        {
-          type: "group",
-          label: "Item 2",
-          children: [
-            {
-              label: "Option 3",
-              key: "setting:3",
-            },
-            {
-              label: "Option 4",
-              key: "setting:4",
-            },
-          ],
-        },
       ],
     },
     {
@@ -71,7 +56,6 @@ const Header = () => {
       <Menu
         onClick={onClick}
         selectedKeys={[current]}
-        mode="horizontal"
         items={items}
         className="bg-green-50"
       />

@@ -1,5 +1,17 @@
+import Image from "antd/lib/image";
+import List from "antd/lib/list";
+import Space from "antd/lib/space";
+import Avatar from "antd/lib/avatar";
+import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
+
 import { APIData } from "../types";
-import Table from "antd/lib/table";
+import { createElement } from "react";
+const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
+  <Space className="text-white px-5">
+    {createElement(icon)}
+    {text}
+  </Space>
+);
 
 const DataDisplay = ({
   data,
@@ -8,41 +20,55 @@ const DataDisplay = ({
   data: APIData | undefined;
   loading?: boolean;
 }) => {
-  const columns = [
-    {
-      title: "API",
-      dataIndex: "API",
-      key: "API",
-    },
-    {
-      title: "Description",
-      dataIndex: "Description",
-      key: "Description",
-    },
-    {
-      title: "Link",
-      dataIndex: "Link",
-      key: "Link",
-    },
-    {
-      title: "Category",
-      dataIndex: "Category",
-      key: "Category",
-    },
-  ];
-
   return (
-    <div className="bg-sky-950 py-20 px-10 text-white flex items-center flex-col">
-      <p className="font-bold text-3xl pb-5">Display Large Data</p>
+    <div className="bg-sky-950 py-20 text-white px-5">
+      <p className="font-bold text-3xl pb-5 text-center">Display Large Data</p>
       <p className="text-right">Data Total: {data?.count}</p>
-      <Table
-        dataSource={data?.entries}
-        columns={columns}
-        bordered
-        size="large"
-        tableLayout="auto"
-        pagination={{ pageSize: 5 }}
+
+      <List
+        className="px-3 sm:w-1/2 mx-auto"
+        itemLayout="vertical"
         loading={loading}
+        pagination={{
+          pageSize: 5,
+        }}
+        dataSource={data?.entries}
+        renderItem={(item) => (
+          <List.Item
+            className="border rounded"
+            key={item.API}
+            actions={[
+              <IconText
+                icon={StarOutlined}
+                text="156"
+                key="list-vertical-star-o"
+              />,
+              <IconText
+                icon={LikeOutlined}
+                text="156"
+                key="list-vertical-like-o"
+              />,
+              <IconText
+                icon={MessageOutlined}
+                text="2"
+                key="list-vertical-message"
+              />,
+            ]}
+          >
+            <List.Item.Meta
+              avatar={<Avatar src={""} className="mx-3" />}
+              title={
+                <a href={item.Link}>
+                  <span className="text-white">{item.Category}</span>
+                </a>
+              }
+              description={
+                <span className="text-white">{item.Description}</span>
+              }
+            />
+            <span className="text-white px-5">{item.Link}</span>
+          </List.Item>
+        )}
       />
     </div>
   );

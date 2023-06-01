@@ -5,11 +5,11 @@ import { APIData } from "../types";
 
 export default function Home({ data }: { data: APIData }) {
   return (
-    <div>
+    <>
       <Header />
       <DataDisplay data={data} />
       <Footer />
-    </div>
+    </>
   );
 }
 
