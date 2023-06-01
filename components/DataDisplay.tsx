@@ -26,7 +26,7 @@ const DataDisplay = ({
       <p className="text-right">Data Total: {data?.count}</p>
 
       <List
-        className="px-3 sm:w-1/2 mx-auto"
+        className="px-3 sm:w-1/2 mx-auto break-words"
         itemLayout="vertical"
         loading={loading}
         pagination={{
