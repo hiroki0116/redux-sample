@@ -3,7 +3,8 @@ import List from "antd/lib/list";
 import Space from "antd/lib/space";
 import Avatar from "antd/lib/avatar";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-
+import { useSelector } from "react-redux";
+import { RootState } from "../stores/store";
 import { APIData } from "../types";
 import { createElement } from "react";
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
@@ -22,8 +23,10 @@ const DataDisplay = ({
   time: number;
   loading?: boolean;
 }) => {
+  const count = useSelector((state: RootState) => state.counter.value);
   return (
     <div className="text-white px-5">
+      <p>Count {count}</p>
       <p className="font-bold text-3xl pb-5 text-center">Display Large Data</p>
       <p className="text-right">
         Data Total: {loading ? "Loading..." : data?.count} in {time} ms

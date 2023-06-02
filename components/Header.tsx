@@ -38,7 +38,7 @@ const Header = () => {
       ],
     },
     {
-      label: <a href="/redux">Redux Sample</a>,
+      label: <Link href="/redux">Redux Sample</Link>,
       key: "alipay",
     },
   ];
