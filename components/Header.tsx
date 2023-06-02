@@ -12,34 +12,9 @@ const Header = () => {
   };
   const items: MenuProps["items"] = [
     {
-      label: "Navigation Two",
-      key: "app",
-      icon: <AppstoreOutlined />,
-    },
-    {
-      label: "Navigation Three - Submenu",
-      key: "SubMenu",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          type: "group",
-          label: "Item 1",
-          children: [
-            {
-              label: "Option 1",
-              key: "setting:1",
-            },
-            {
-              label: "Option 2",
-              key: "setting:2",
-            },
-          ],
-        },
-      ],
-    },
-    {
       label: <Link href="/redux">Redux Sample</Link>,
-      key: "alipay",
+      key: "redux",
+      icon: <AppstoreOutlined />,
     },
   ];
 
@@ -49,7 +24,6 @@ const Header = () => {
         Logo Image
       </Link>
       <Menu
-        mode="horizontal"
         onClick={onClick}
         selectedKeys={[current]}
         items={items}
