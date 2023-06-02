@@ -15,16 +15,18 @@ const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
 
 const DataDisplay = ({
   data,
+  time,
   loading = false,
 }: {
   data: APIData | undefined;
+  time: number;
   loading?: boolean;
 }) => {
   return (
     <div className="text-white px-5">
       <p className="font-bold text-3xl pb-5 text-center">Display Large Data</p>
       <p className="text-right">
-        Data Total: {loading ? "Loading..." : data?.count}
+        Data Total: {loading ? "Loading..." : data?.count} in {time} ms
       </p>
 
       <List
