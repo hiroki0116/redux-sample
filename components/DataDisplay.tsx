@@ -6,7 +6,7 @@ import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import { RootState } from "../stores/store";
 import { APIData } from "../types";
-import { createElement } from "react";
+import { createElement, useEffect } from "react";
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   <Space className="text-white px-5">
     {createElement(icon)}
@@ -24,6 +24,9 @@ const DataDisplay = ({
   loading?: boolean;
 }) => {
   const count = useSelector((state: RootState) => state.counter.value);
+  useEffect(() => {
+    console.log(count);
+  }, [count]);
   return (
     <div className="text-white px-5">
       <p>Count {count}</p>
