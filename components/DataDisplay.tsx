@@ -1,11 +1,9 @@
-import Image from "antd/lib/image";
+import { createElement } from "react";
 import List from "antd/lib/list";
 import Space from "antd/lib/space";
 import Avatar from "antd/lib/avatar";
 import { LikeOutlined, MessageOutlined, StarOutlined } from "@ant-design/icons";
-
 import { APIData } from "../types";
-import { createElement } from "react";
 const IconText = ({ icon, text }: { icon: React.FC; text: string }) => (
   <Space className="text-white px-5">
     {createElement(icon)}
@@ -23,14 +21,13 @@ const DataDisplay = ({
   loading?: boolean;
 }) => {
   return (
-    <div className="text-white px-5">
+    <div className="text-white px-5 sm:w-1/2 mx-auto ">
       <p className="font-bold text-3xl pb-5 text-center">Display Large Data</p>
-      <p className="text-right">
+      <p className="pb-3">
         Data Total: {loading ? "Loading..." : data?.count} in {time} ms
       </p>
-
       <List
-        className="px-3 sm:w-1/2 mx-auto break-words"
+        className="px-3 break-words"
         itemLayout="vertical"
         loading={loading}
         pagination={{
@@ -39,7 +36,7 @@ const DataDisplay = ({
         dataSource={data?.entries}
         renderItem={(item) => (
           <List.Item
-            className="border rounded"
+            className="border rounded "
             key={item.API}
             actions={[
               <IconText

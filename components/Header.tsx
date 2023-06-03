@@ -1,11 +1,8 @@
+import Link from "next/link";
 import Menu from "antd/lib/menu";
 import { useState } from "react";
 import type { MenuProps } from "antd";
-import {
-  AppstoreOutlined,
-  MailOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
+import { AppstoreOutlined, SettingOutlined } from "@ant-design/icons";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
@@ -15,44 +12,17 @@ const Header = () => {
   };
   const items: MenuProps["items"] = [
     {
-      label: "Navigation Two",
-      key: "app",
+      label: <Link href="/redux">Redux Sample</Link>,
+      key: "redux",
       icon: <AppstoreOutlined />,
-    },
-    {
-      label: "Navigation Three - Submenu",
-      key: "SubMenu",
-      icon: <SettingOutlined />,
-      children: [
-        {
-          type: "group",
-          label: "Item 1",
-          children: [
-            {
-              label: "Option 1",
-              key: "setting:1",
-            },
-            {
-              label: "Option 2",
-              key: "setting:2",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      label: (
-        <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-          Navigation Four - Link
-        </a>
-      ),
-      key: "alipay",
     },
   ];
 
   return (
     <div className="bg-green-50 text-center px-5 py-3 flex justify-between items-center">
-      <p className="font-extrabold">Logo Image</p>
+      <Link href="/" className="font-extrabold">
+        Logo Image
+      </Link>
       <Menu
         onClick={onClick}
         selectedKeys={[current]}

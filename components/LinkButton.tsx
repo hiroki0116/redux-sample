@@ -1,11 +1,11 @@
-import Button from "antd/lib/button";
+import Link from "next/link";
 
 const LinkButton = ({ path, label }: { path: string; label: string }) => {
   return (
     <div className="flex justify-center pb-10">
-      <Button href={path} type="primary">
+      <Link href={path} type="primary" className="border p-1.5 rounded">
         {label}
-      </Button>
+      </Link>
     </div>
   );
 };
