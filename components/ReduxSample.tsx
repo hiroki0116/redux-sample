@@ -17,23 +17,26 @@ const ReduxSample = () => {
   const handleDecrement = () => dispatch(decrement());
   const handleAdd = () => dispatch(incrementByAmount(val));
   return (
-    <>
-      <div className="text-center">Reducer Count: {count}</div>
-      <div className="flex justify-center gap-5 py-5">
+    <div className="sm:w-1/2 mx-auto px-5">
+      <p className="font-bold pb-1">Example 1: </p>
+      <div className="flex sm:flex-row flex-col items-center gap-3 border p-2 rounded justify-between">
+        <div className="text-center font-bold">Count: {count}</div>
         <Button className="bg-red-400" onClick={handleIncrement}>
           Increment
         </Button>
         <Button className="bg-red-400" onClick={handleDecrement}>
           Decrement
         </Button>
-      </div>
-      <div className="flex justify-center gap-5 w-44 mx-auto">
-        <Input value={val} onChange={(e) => setVal(+e.target.value)} />
+        <Input
+          value={val}
+          onChange={(e) => setVal(+e.target.value)}
+          className="w-20"
+        />
         <Button className="bg-red-300" onClick={handleAdd}>
           Add
         </Button>
       </div>
-    </>
+    </div>
   );
 };
 

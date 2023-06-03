@@ -1,33 +1,39 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  AnyAction,
+  Dispatch,
+  createAsyncThunk,
+  createSlice,
+} from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { employeeRepository } from "../../api-client/repositories/emloyee_repository";
-import { Employee } from "../../api-client/models/employee";
+import { Employee } from "../../api-client/models/Employee";
 
-type EmployeeState = {
+export type EmployeeState = {
   page: number;
-  data: undefined | Employee[];
-  status: string;
+  data: Employee[];
+  status: "idle" | "loading" | "failed" | "succeeded";
 };
 
 const initialState: EmployeeState = {
   page: 1,
-  data: undefined,
+  data: [],
   status: "idle",
 };
 
-export const employeeAsync = createAsyncThunk(
-  "employee/async",
+export const getEmployees = createAsyncThunk(
+  "employee/getEmployees",
   async (page: number) => {
     try {
       const data = await employeeRepository.getEmployees(page);
       return {
-        status: "idle",
         data,
+        status: "succeeded",
       };
     } catch (e) {
+      console.log(e);
       return {
-        status: "failed",
         data: [],
+        status: "failed",
       };
     }
   }
@@ -37,23 +43,23 @@ export const employeeSlice = createSlice({
   name: "employee",
   initialState,
   reducers: {
-    changePagenation: (state, action: PayloadAction<number>) => {
-      state.page += action.payload;
+    changePagination: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(employeeAsync.pending, (state) => {
+      .addCase(getEmployees.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(employeeAsync.fulfilled, (state, action) => {
-        state.status = "idle";
-        state.data && state.data.push(...action.payload.data);
+      .addCase(getEmployees.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.data = action.payload.data;
       });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { changePagenation } = employeeSlice.actions;
+export const { changePagination } = employeeSlice.actions;
 
 export default employeeSlice.reducer;

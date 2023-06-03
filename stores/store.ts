@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "./counter/counterSlice";
+import employeesReducer from "./employee/employeeSlice";
 
 export const store = configureStore({
+  devTools: process.env.NODE_ENV === "development",
   reducer: {
     counter: counterReducer,
+    employees: employeesReducer,
   },
 });
 

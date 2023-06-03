@@ -1,4 +1,4 @@
-import { Employee } from "../models/employee";
+import { Employee } from "../models/Employee";
 
 type EmployeeRepository = {
   getEmployees: (page: number) => Promise<Employee[]>;
@@ -6,7 +6,7 @@ type EmployeeRepository = {
 
 export const getEmployees = async (page: number): Promise<Employee[]> => {
   const response = await fetch(
-    `https://retoolapi.dev/N3s827/employees=${page}&_limit=10`
+    `https://api-generator.retool.com/N3s827/employees?_page=${page}&_limit=5`
   );
   const employees = await response.json();
   return employees;
