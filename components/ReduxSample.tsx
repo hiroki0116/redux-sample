@@ -20,7 +20,7 @@ const ReduxSample = () => {
     <div className="sm:w-1/2 mx-auto px-5">
       <p className="font-bold pb-1">Example 1: </p>
       <div className="flex sm:flex-row flex-col items-center gap-3 border p-2 rounded justify-between">
-        <div className="text-center font-bold">Count: {count}</div>
+        <p className="text-center font-bold">Count: {count}</p>
         <Button className="bg-red-400" onClick={handleIncrement}>
           Increment
         </Button>

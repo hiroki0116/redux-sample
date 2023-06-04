@@ -13,6 +13,7 @@ import {
   getEmployees,
 } from "../stores/employee/employeeSlice";
 import { EmployeeState } from "../stores/employee/employeeSlice";
+import SearchEmployee from "./SearchEmployee";
 
 const Employees = () => {
   const dispatch: ThunkDispatch<EmployeeState, void, AnyAction> = useDispatch();
@@ -21,7 +22,7 @@ const Employees = () => {
   );
 
   useEffect(() => {
-    dispatch(getEmployees(page));
+    if (page > 0) dispatch(getEmployees(page));
   }, [dispatch, page]);
 
   const handlePagination = (selectedPage: number) =>
@@ -61,18 +62,21 @@ const Employees = () => {
     <div className="sm:w-1/2 mx-auto px-5 my-5">
       <p className="pb-1">Exmple 2:</p>
       <div className="border p-2 rounded">
+        <SearchEmployee />
         <p>Employees List</p>
         <Table
           dataSource={data}
           loading={status === "loading"}
           columns={columns}
-          pagination={false}
+          pagination={page != 0 && false}
           rowKey="id"
           bordered
         />
-        <div className="bg-white p-2">
-          <Pagination total={150} onChange={handlePagination} pageSize={10} />
-        </div>
+        {page > 0 && (
+          <div className="bg-white p-2">
+            <Pagination total={150} onChange={handlePagination} pageSize={10} />
+          </div>
+        )}
       </div>
     </div>
   );
