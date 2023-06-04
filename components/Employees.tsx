@@ -22,7 +22,7 @@ const Employees = () => {
   );
 
   useEffect(() => {
-    dispatch(getEmployees(page));
+    if (page > 0) dispatch(getEmployees(page));
   }, [dispatch, page]);
 
   const handlePagination = (selectedPage: number) =>
@@ -68,13 +68,15 @@ const Employees = () => {
           dataSource={data}
           loading={status === "loading"}
           columns={columns}
-          pagination={false}
+          pagination={page != 0 && false}
           rowKey="id"
           bordered
         />
-        <div className="bg-white p-2">
-          <Pagination total={150} onChange={handlePagination} pageSize={10} />
-        </div>
+        {page > 0 && (
+          <div className="bg-white p-2">
+            <Pagination total={150} onChange={handlePagination} pageSize={10} />
+          </div>
+        )}
       </div>
     </div>
   );
